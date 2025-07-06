@@ -46,6 +46,8 @@ def load_config(path="config.yaml"):
         return yaml.safe_load(f)
 
 SHEET_CONFIG = load_config()
+print("🔍 Sheet config keys:", SHEET_CONFIG.keys())
+print("📄 Orders config:", SHEET_CONFIG.get("sheets", {}).get("orders"))
 
 
 

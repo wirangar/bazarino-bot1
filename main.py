@@ -54,7 +54,21 @@ print("📄 Sheet config keys:", SHEET_CONFIG.keys())  # باید orders, produc
 print("📌 Orders config:", SHEET_CONFIG.get("orders"))  # باید {'name': 'Sheet1', 'columns': {...}} رو چاپ کنه
 
 
+#124
+# ───────────── Messages
+try:
+    with open("messages.json", encoding="utf-8") as f:
+        MSG = json.load(f)
+except FileNotFoundError:
+    log.error("messages.json not found")
+    raise SystemExit("❗️ فایل messages.json یافت نشد.")
+except json.JSONDecodeError as e:
+    log.error(f"Invalid messages.json: {e}")
+    raise SystemExit("❗️ فایل messages.json نامعتبر است: خطا در تجزیه JSON")
 
+def m(k: str) -> str:
+    """برگرداندن متن چندزبانه از فایل messages.json"""
+    return MSG.get(k, f"[{k}]")
 
 
 

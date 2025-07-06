@@ -33,6 +33,24 @@ from telegram.ext import (
 )
 from telegram.error import BadRequest, NetworkError
 
+
+#123
+
+import yaml
+import os
+
+def load_config(path="config.yaml"):
+    if not os.path.exists(path):
+        raise FileNotFoundError(f"⚠️ فایل پیکربندی پیدا نشد: {path}")
+    with open(path, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+SHEET_CONFIG = load_config()
+
+
+
+
+
 # Logging setup
 logging.basicConfig(
     level=logging.INFO,

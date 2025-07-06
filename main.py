@@ -357,7 +357,7 @@ try:
     scope = ["https://spreadsheets.google.com/feeds", 
              "https://www.googleapis.com/auth/drive"]
     
-    creds_path = os.getenv("GOOGLE_CREDS", "/etc/secrets/bazarino-perugia-bot-f37c44dd9b14.json")
+    creds_path = os.getenv("GOOGLE_CREDS", "/etc/secrets/bazarino-bot1")
     
     try:
         with open(creds_path, "r", encoding="utf-8") as f:

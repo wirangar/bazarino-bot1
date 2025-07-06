@@ -45,9 +45,13 @@ def load_config(path="config.yaml"):
     with open(path, "r", encoding="utf-8") as f:
         return yaml.safe_load(f)
 
+# ✅ این خط باید اضافه بشه!
+CONFIG = load_config()
+
+# حالا از CONFIG استفاده کن
 SHEET_CONFIG = CONFIG["sheets"]
-print("📌 Sheet config keys:", SHEET_CONFIG.keys())  # باید orders، products، discounts، uploads و ... باشه
-print("📄 Orders config:", SHEET_CONFIG.get("orders"))  # اینجا باید دیکشنری {'name': 'Sheet1', 'columns': {...}} رو چاپ کنه
+print("📄 Sheet config keys:", SHEET_CONFIG.keys())  # باید orders, products, discounts, uploads و ... باشه
+print("📌 Orders config:", SHEET_CONFIG.get("orders"))  # باید {'name': 'Sheet1', 'columns': {...}} رو چاپ کنه
 
 
 

@@ -56,9 +56,13 @@ print("📌 Orders config:", SHEET_CONFIG.get("orders"))  # باید {'name': 'S
 
 #124
 # ───────────── Messages
+import logging
+log = logging.getLogger("bazarino")
+
 try:
     with open("messages.json", encoding="utf-8") as f:
         MSG = json.load(f)
+        print(f"✅ Messages loaded: {len(MSG)} keys")
 except FileNotFoundError:
     log.error("messages.json not found")
     raise SystemExit("❗️ فایل messages.json یافت نشد.")

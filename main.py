@@ -49,112 +49,7 @@ tg_app = None
 bot = None
 
 # ───────────── Lazy-import Pillow
-async def generate_invoice(order_id, user_data, cart, total, discount):
-    from PIL import Image, ImageDraw, ImageFont
-    width, height = 600, 900
-    img = Image.new("RGB", (width, height), color=(255, 255, 255))
-    draw = ImageDraw.Draw(img)
-
-    header_color = (0, 128, 0)
-    text_color = (0, 0, 0)
-    accent_color = (255, 215, 0)
-    border_color = (0, 0, 0)
-    beige = (245, 245, 220)
-
-    try:
-        title_font = ImageFont.truetype("fonts/Vazir.ttf", 24)
-        body_font = ImageFont.truetype("fonts/arial.ttf", 18)
-        small_font = ImageFont.truetype("fonts/Vazir.ttf", 16)
-    except Exception as e:
-        log.error(f"Font loading error: {e}")
-        title_font = ImageFont.load_default(size=24)
-        body_font = ImageFont.load_default(size=18)
-        small_font = ImageFont.load_default(size=16)
-
-    draw.rectangle([(0, 0), (width, 80)], fill=header_color)
-    draw.text((width // 2, 40), "فاکتور بازارینو / Fattura Bazarino", fill=(255, 255, 255), font=title_font, anchor="mm")
-    try:
-        logo = Image.open("logo.png").resize((60, 60))
-        img.paste(logo, (20, 10))
-    except Exception as e:
-        log.error(f"Logo loading error: {e}")
-
-    y = 100
-    draw.text((50, y), f"شماره سفارش / Ordine #{order_id}", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"نام / Nome: {user_data['name']}", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"مقصد / Destinazione: {user_data['dest']}", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"آدرس / Indirizzo: {user_data['address']} | {user_data['postal']}", font=body_font, fill=text_color)
-    y += 40
-
-    draw.text((50, y), "محصولات / Prodotti:", font=body_font, fill=text_color)
-    y += 30
-    draw.rectangle([(40, y - 10), (width - 40, y + 10 + len(cart) * 30)], outline=border_color, width=1)
-    for item in cart:
-        draw.text((50, y), f"{item['qty']}× {item['fa']} — {item['qty'] * item['price']:.2f}€", font=body_font, fill=text_color)
-        y += 30
-    y += 20
-
-    draw.text((50, y), f"تخفیف / Sconto: {discount:.2f}€", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"مجموع / Totale: {total:.2f}€", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"یادداشت / Nota: {user_data.get('notes', 'بدون یادداشت')}", font=body_font, fill=text_color)
-    y += 40
-
-    draw.rectangle([(40, y - 10), (width - 40, y + 80)], outline=border_color, width=1, fill=beige)
-    if not HAFEZ_QUOTES:
-        log.error("No Hafez quotes defined in config.yaml")
-        hafez = {"fa": "بدون نقل‌قول", "it": "Nessuna citazione"}
-    else:
-        hafez = random.choice(HAFEZ_QUOTES)
-    draw.text((50, y), "✨ فال حافظ / Fal di Hafez:", font=small_font, fill=text_color)
-    y += 20
-    draw.text((50, y), hafez["fa"], font=small_font, fill=text_color)
-    y += 20
-    draw.text((50, y), hafez["it"], font=small_font, fill=text_color)
-    y += 30
-
-    draw.rectangle([(0, height - 40), (width, height)], fill=header_color)
-    draw.text((width // 2, height - 20), "بازارینو - طعم ایران در ایتالیا", fill=(255, 255, 255), font=small_font, anchor="mm")
-
-    buffer = io.BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.seek(0)
-    return buffer
-
-# ───────────── Config
-try:
-    with open("config.yaml", encoding="utf-8") as f:
-        CONFIG = yaml.safe_load(f)
-    if not CONFIG or "sheets" not in CONFIG or "hafez_quotes" not in CONFIG:
-        log.error("Invalid config.yaml: missing 'sheets' or 'hafez_quotes'")
-        raise SystemExit("❗️ فایل config.yaml نامعتبر است: کلیدهای 'sheets' یا 'hafez_quotes' وجود ندارند.")
-except FileNotFoundError:
-    log.error("config.yaml not found")
-    raise SystemExit("❗️ فایل config.yaml یافت نشد.")
-
-SHEET_CONFIG = CONFIG["sheets"]
-HAFEZ_QUOTES = CONFIG["hafez_quotes"]
-required_sheets = ["orders", "products", "abandoned_carts", "discounts", "uploads"]
-for sheet in required_sheets:
-    if sheet not in SHEET_CONFIG or "name" not in SHEET_CONFIG[sheet]:
-        log.error(f"Missing or invalid sheet configuration for '{sheet}' in config.yaml")
-        raise SystemExit(f"❗️ تنظیمات sheet '{sheet}' در config.yaml نامعتبر است.")
-
-# ───────────── Messages
-try:
-    with open("messages.json", encoding="utf-8") as f:
-        MSG = json.load(f)
-except FileNotFoundError:
-    log.error("messages.json not found")
-    raise SystemExit("❗️ فایل messages.json یافت نشد.")
-except json.JSONDecodeError as e:
-    log.error(f"Invalid messages.json: {e}")
-    raise SystemExit("❗️ فایل messages.json نامعتبر است: خطا در تجزیه JSON")
-
+<PLACEHOLDER: Will be inserted below>
 def m(k: str) -> str:
     return MSG.get(k, f"[{k}]")
 
@@ -186,7 +81,7 @@ PORT = int(os.getenv("PORT", "8000"))
 # ───────────── Google Sheets
 try:
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds_path = os.getenv("GOOGLE_CREDS", "/etc/secrets/bazarino-bot1")
+    creds_path = os.getenv("GOOGLE_CREDS", "/etc/secrets/bazarino-perugia-bot-f37c44dd9b14.json")
     try:
         with open(creds_path, "r", encoding="utf-8") as f:
             CREDS_JSON = json.load(f)

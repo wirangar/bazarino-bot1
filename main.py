@@ -49,7 +49,7 @@ tg_app = None
 bot = None
 
 # ───────────── Lazy-import Pillow
-<PLACEHOLDER: Will be inserted below>
+
 def m(k: str) -> str:
     return MSG.get(k, f"[{k}]")
 

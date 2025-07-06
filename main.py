@@ -53,6 +53,7 @@ SHEET_CONFIG = CONFIG["sheets"]
 print("📄 Sheet config keys:", SHEET_CONFIG.keys())  # باید orders, products, discounts, uploads و ... باشه
 print("📌 Orders config:", SHEET_CONFIG.get("orders"))  # باید {'name': 'Sheet1', 'columns': {...}} رو چاپ کنه
 
+HAFEZ_QUOTES = CONFIG.get("hafez_quotes", [])
 
 #124
 # ───────────── Messages
@@ -92,6 +93,73 @@ tg_app = None
 bot = None
 
 # ───────────── Lazy-import Pillow
+
+
+# ───────────── Invoice Generation (PNG)
+async def generate_invoice(order_id, user_data, cart, total, discount):
+    """Create a simple PNG invoice using Pillow so reply_photo still works."""
+    from PIL import Image, ImageDraw, ImageFont
+    width, height = 600, 900
+    img = Image.new("RGB", (width, height), color=(255, 255, 255))
+    draw = ImageDraw.Draw(img)
+
+    header_color = (0, 128, 0)
+    text_color = (0, 0, 0)
+    beige = (245, 245, 220)
+
+    try:
+        title_font = ImageFont.truetype("fonts/Vazir.ttf", 24)
+        body_font = ImageFont.truetype("fonts/arial.ttf", 18)
+        small_font = ImageFont.truetype("fonts/Vazir.ttf", 16)
+    except Exception:
+        title_font = body_font = small_font = ImageFont.load_default()
+
+    # Header
+    draw.rectangle([(0, 0), (width, 70)], fill=header_color)
+    draw.text((width//2, 35), "فاکتور بازارینو / Bazarino Invoice", fill=(255, 255, 255), font=title_font, anchor="mm")
+
+    y = 90
+    draw.text((40, y), f"Order # {order_id}", font=body_font, fill=text_color)
+    y += 30
+    draw.text((40, y), f"Name / Nome: {user_data.get('name')}", font=body_font, fill=text_color)
+    y += 30
+    draw.text((40, y), f"Dest / Destinazione: {user_data.get('dest')}", font=body_font, fill=text_color)
+    y += 30
+    draw.text((40, y), f"Address / Indirizzo: {user_data.get('address')} | {user_data.get('postal')}", font=body_font, fill=text_color)
+    y += 40
+
+    draw.text((40, y), "Products / Prodotti:", font=body_font, fill=text_color)
+    y += 25
+    for item in cart:
+        draw.text((50, y), f"{item['qty']}× {item['fa']} – {item['qty']*item['price']:.2f}€", font=body_font, fill=text_color)
+        y += 25
+    y += 15
+
+    draw.text((40, y), f"Discount / Sconto: {discount:.2f}€", font=body_font, fill=text_color)
+    y += 25
+    draw.text((40, y), f"Total / Totale: {total:.2f}€", font=body_font, fill=text_color)
+    y += 30
+
+    # Hafez quote
+    if HAFEZ_QUOTES:
+        quote = random.choice(HAFEZ_QUOTES)
+    else:
+        quote = {"fa": " ", "it": " "}
+    draw.rectangle([(30, y), (width-30, y+80)], outline=header_color, fill=beige)
+    draw.text((40, y+10), "✨ فال حافظ:", font=small_font, fill=text_color)
+    draw.text((40, y+30), quote.get("fa", ""), font=small_font, fill=text_color)
+    draw.text((40, y+50), quote.get("it", ""), font=small_font, fill=text_color)
+
+    # Footer
+    draw.rectangle([(0, height-35), (width, height)], fill=header_color)
+    draw.text((width//2, height-18), "بازارینو – طعم ایران در ایتالیا", fill=(255,255,255), font=small_font, anchor="mm")
+
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    buf.seek(0)
+    return buf
+
+
 
 def m(k: str) -> str:
     return MSG.get(k, f"[{k}]")

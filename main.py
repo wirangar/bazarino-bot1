@@ -530,6 +530,26 @@ def fmt_cart(cart):
         log.error(f"Error in fmt_cart: {e}")
         return "❗️ خطا در نمایش سبد خرید."
 
+#123456789
+async def increment_item(ctx, pid):
+    return (await add_cart(ctx, pid, 1))[0]
+
+async def decrement_item(ctx, pid):
+    cart = ctx.user_data.get("cart", [])
+    for it in cart:
+        if it["id"] == pid:
+            it["qty"] -= 1
+            if it["qty"] <= 0:
+                cart.remove(it)
+            return True
+    return False
+
+async def remove_item(ctx, pid):
+    cart = ctx.user_data.get("cart", [])
+    ctx.user_data["cart"] = [it for it in cart if it["id"] != pid]
+    return True
+
+
 # ───────────── Stock Update
 async def update_stock(cart):
     try:
@@ -871,6 +891,39 @@ async def cmd_privacy(u, ctx: ContextTypes.DEFAULT_TYPE):
         log.error(f"Error in cmd_privacy: {e}")
         await u.message.reply_text("❗️ خطا در نمایش سیاست حریم خصوصی. لطفاً دوباره امتحان کنید.")
 
+
+# ───────────── Cart Buttons Handler
+async def handle_cart_buttons(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
+    q    = update.callback_query
+    data = q.data
+    pid  = data.split("_", 1)[1]
+
+    if data.startswith("inc_"):
+        ok = await increment_item(ctx, pid)
+        await q.answer("✅ یک عدد افزوده شد" if ok else m("STOCK_EMPTY"), show_alert=not ok)
+
+    elif data.startswith("dec_"):
+        await decrement_item(ctx, pid)
+        await q.answer("➖ کم شد")
+
+    elif data.startswith("del_"):
+        await remove_item(ctx, pid)
+        await q.answer("❌ حذف شد")
+
+    elif data.startswith("add_"):
+        ok, msg = await add_cart(ctx, pid, 1, update=update)
+        await q.answer(msg, show_alert=not ok)
+
+    cart = ctx.user_data.get("cart", [])
+    if cart:
+        await safe_edit(q,
+                        f"{m('CART_GUIDE')}\n\n{fmt_cart(cart)}",
+                        reply_markup=kb_cart(cart), parse_mode="HTML")
+    else:
+        await safe_edit(q, m("CART_EMPTY"), reply_markup=await kb_main(ctx))
+
+
+
 # ───────────── App, Webhook, and FastAPI
 async def post_init(app: Application):
     try:
@@ -922,6 +975,9 @@ async def lifespan(app: FastAPI):
             },
             fallbacks=[CommandHandler("cancel", cancel_order)]
         ))
+        tg_app.add_handler(
+            CallbackQueryHandler(handle_cart_buttons, pattern=r"^(inc_|dec_|del_|add_)")
+        )
         tg_app.add_handler(CallbackQueryHandler(router))
         yield
         await tg_app.shutdown()
@@ -930,6 +986,7 @@ async def lifespan(app: FastAPI):
         if ADMIN_ID and bot:
             await bot.send_message(ADMIN_ID, f"⚠️ خطا در راه‌اندازی برنامه: {e}")
         raise
+
 
 app = FastAPI(lifespan=lifespan)
 

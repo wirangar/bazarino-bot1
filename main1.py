@@ -888,6 +888,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
+
+# --- keep-alive route برای UptimeRobot ---
+@app.get("/")
+async def keep_alive():
+    return {"status": "Bazarino is alive 🚀"}
+# -----------------------------------------
+
 @app.post("/webhook/{secret}")
 async def wh(req: Request, secret: str):
     try:

@@ -31,4 +31,8 @@
   "ERROR_UPLOAD": "❌ خطا در ارسال تصویر. لطفاً دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.\nErrore durante l'invio dell'immagine. Riprova o contatta il supporto.",
   "ERROR_FILE_SIZE": "❌ حجم تصویر بیش از حد مجاز (2 مگابایت) است.\nL'immagine supera il limite di 2 MB.",
   "CART_GUIDE": "🛒 لطفاً مقصد سفارش خود را انتخاب کنید:\nاگر در پروجا هستید، گزینه «پروجا» را انتخاب کنید.\nاگر در شهرهای دیگر ایتالیا هستید، گزینه «ایتالیا» را انتخاب کنید و سپس «ادامه» را بزنید.\n\nScegli la destinazione del tuo ordine:\nSe sei a Perugia, seleziona «Perugia».\nSe sei in altre città italiane, seleziona «Italia» e poi premi «Continua»."
+  "C wysokie": "تعداد کاهش یافت.\nQuantità diminuita.",
+  "CART_MIN_QUANTITY": "حداقل تعداد ۱ است.\nLa quantità minima è 1.",
+  "CART_ITEM_REMOVED": "محصول از سبد خرید حذف شد.\nProdotto rimosso dal carrello.",
+  "CART_ITEM_NOT_FOUND": "محصول در سبد خرید یافت نشد.\nProdotto non trovato nel carrello."
 }

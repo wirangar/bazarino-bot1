@@ -1,7 +1,6 @@
-
 sheets:
   orders:
-    name: "Sheet1"
+    name: Sheet1
     columns:
       timestamp: 1
       order_id: 2
@@ -21,9 +20,8 @@ sheets:
       discount_amount: 16
       status: 17
       notified: 18
-
   products:
-    name: "Sheet2"
+    name: Sheet2
     columns:
       id: 1
       cat: 2
@@ -37,99 +35,32 @@ sheets:
       stock: 10
       is_bestseller: 11
       version: 12
-
   discounts:
-    name: "Sheet3"
+    name: Sheet3
     columns:
       code: 1
       discount_percent: 2
       valid_until: 3
       is_active: 4
-
   abandoned_carts:
-    name: "AbandonedCarts"
+    name: AbandonedCarts
     columns:
       timestamp: 1
       user_id: 2
       cart: 3
-
   uploads:
-    name: "UserUploads"
+    name: UserUploads
     columns:
       timestamp: 1
       user_id: 2
       handle: 3
       file_id: 4
-
 hafez_quotes:
-  - fa: |
-      حافظا در کنج فقر و خلوت عزلت
-      یارم آن شمع است و باقی همه پروانه
-    it: |
-      Hafez, nel angolo della povertà e della solitudine,
-      Il mio amato è la candela, e gli altri sono falene.
-    meaning_fa: "در عزلت و سادگی بمان؛ دلْ روشن به محبوب است و دیگران فانی‌اند."
-    meaning_it: "Rimani nella semplicità; il tuo cuore si illumina con l’Amato e gli altri sono effimeri."
-
-  - fa: |
-      دل می‌رود ز دستم صاحب‌دلان خدا را
-      دارید در دلم دل، ای بی‌خبر ز حالم
-    it: |
-      Il mio cuore sfugge di mano, o anime gentili, per Dio,
-      Tenete il mio cuore nel vostro cuore, o ignari del mio stato.
-    meaning_fa: "دلت پریشان است؛ از اهل دل یاری بجوی تا آرام شوی."
-    meaning_it: "Il tuo cuore è inquieto; cerca aiuto tra i puri di cuore per trovare pace."
-
-  - fa: |
-      ساقی به نور باده برافروز جام ما
-      مطرب بگو که کار جهان شد به کام ما
-    it: |
-      Coppiere, accendi il nostro calice con la luce del vino,
-      Musico, dì che il mondo si è piegato al nostro volere.
-    meaning_fa: "زمان جشن و کامیابی است؛ از فرصت‌ها لذت ببر و شکرگزار باش."
-    meaning_it: "È tempo di festa e successo; godi delle opportunità e sii riconoscente."
-
-  - fa: |
-      بر سر آنم که گر ز دست برآید
-      دست به کاری زنم که خیر بماند
-    it: |
-      Ho deciso che, se mi sarà possibile,
-      Farò qualcosa che lasci un bene duraturo.
-    meaning_fa: "عزم کن کار نیکی انجام دهی که نام نیکت ماندگار شود."
-    meaning_it: "Deciditi a compiere un’azione buona così il tuo nome rimarrà luminoso."
-
-  - fa: |
-      دوش دیدم که ملائک در میخانه زدند
-      گل آدم بسرشتند و به پیمانه زدند
-    it: |
-      Ieri vidi gli angeli bussare alla taverna;
-      Modellarono l’argilla di Adamo e la misero nella coppa.
-    meaning_fa: "ارزش انسان در عشق و مستی الهی است؛ خود را کم مپندار."
-    meaning_it: "Il valore umano risiede nell’ebbrezza divina; non sottovalutarti."
-
-  - fa: |
-      سحرگاهان که مخمور شبانه
-      گرفتم باده با چنگ و چغانه
-    it: |
-      All’alba, ebbro della notte,
-      Presi il vino con arpa e tamburo.
-    meaning_fa: "سپیده‌دمِ امید است؛ با شور تازه به استقبال روز برو."
-    meaning_it: "È l’alba della speranza; accogli il giorno con nuovo ardore."
-
-  - fa: |
-      سال‌ها دل طلب جام جم از ما می‌کرد
-      و آنچه خود داشت ز بیگانه تمنا می‌کرد
-    it: |
-      Per anni il cuore chiedeva a noi la coppa di Jamshid,
-      E ciò che possedeva, lo cercava dagli estranei.
-    meaning_fa: "گنج سعادت در وجود توست؛ از بیرون مجوی."
-    meaning_it: "La vera ricchezza è dentro di te; non cercarla all’esterno."
-
-  - fa: |
-      به تماشاگه راز است دل آرام گرفته
-      و از تماشایِ جهان چشمِ دلش کام گرفته
-    it: |
-      Il cuore ha trovato pace nella galleria dei segreti
-      E, contemplando il mondo, si è saziato.
-    meaning_fa: "دل تو با مکاشفه و تفکر آرام می‌گیرد؛ لحظه‌ای درنگ کن."
-    meaning_it: "Il tuo cuore trova quiete nella contemplazione; fermati un istante a riflettere."
+  - fa: حافظا در کنج فقر و خلوت عزلت\nیارم آن شمع است و باقی همه پروانه
+    it: Hafez, nel angolo della povertà e della solitudine,\nIl mio amato è la candela, e gli altri sono falene.
+  - fa: دل می‌رود ز دستم صاحب‌دلان خدا را\nدارید در دلم دل، ای بی‌خبر ز حالم
+    it: Il mio cuore sfugge di mano, o anime gentili, per Dio,\nTenete il mio cuore nel vostro cuore, o ignari del mio stato.
+  - fa: ساقی به نور باده برافروز جام ما\nمطرب بگو که کار جهان شد به کام ما
+    it: Coppiere, accendi il nostro calice con la luce del vino,\nMusico, di’ che il mondo si è piegato al nostro volere.
+  - fa: بر سر آنم که گر ز دست برآید\nدست به کاری زنم که خیر بماند
+    it: Ho deciso che, se mi sarà possibile,\nFarò qualcosa che lasci un bene duraturo.

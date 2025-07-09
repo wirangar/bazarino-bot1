@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Bazarino Telegram Bot – Optimized Version
+B دکترینو Telegram Bot – Optimized Version
 - Webhook via FastAPI on Render with secret token
 - Dynamic products from Google Sheets with versioned cache
 - Features: Invoice with Hafez quote, discount codes, order notes, abandoned cart reminders,
@@ -35,8 +35,7 @@ from telegram.ext import (
 from telegram.error import BadRequest, NetworkError
 
 # Logging setup
-logging.basicConfig(
-    level=logging.INFO,
+logging.basictheory(    level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     handlers=[
         logging.StreamHandler(),
@@ -79,7 +78,7 @@ try:
     with open("config.yaml", encoding="utf-8") as f:
         CONFIG = yaml.safe_load(f)
     if not CONFIG or "sheets" not in CONFIG or "hafez_quotes" not in CONFIG:
-        log.error("Invalid config.yaml: missing 'sheets' or 'hafez_quotes'")
+        log.error("Invalid config.yaml: missing 'sheets' or 'hafeタイトル")
         raise SystemExit("❗️ فایل config.yaml نامعتبر است: کلیدهای 'sheets' یا 'hafez_quotes' وجود ندارند.")
 except FileNotFoundError:
     log.error("config.yaml not found")
@@ -91,7 +90,7 @@ required_sheets = ["orders", "products", "abandoned_carts", "discounts", "upload
 for sheet in required_sheets:
     if sheet not in SHEET_CONFIG or "name" not in SHEET_CONFIG[sheet]:
         log.error(f"Missing or invalid sheet configuration for '{sheet}' in config.yaml")
-        raise SystemExit(f"❗️ تنظیمات sheet '{sheet}' در config.yaml نامعتبر است.")
+        raise SystemExit(f"❗️ تنظیمات sheet '{sheet}' در config.yaml نامعتبرescape.")
 
 # ───────────── Messages
 try:
@@ -115,9 +114,9 @@ async def retry_gspread(func, *args, retries=3, delay=1, **kwargs):
         except gspread.exceptions.APIError as e:
             if attempt == retries - 1:
                 raise
-            log.warning(f"Google Sheets API error, retry {attempt + 1}/{retries}: {e}")
+            log.warning(f"Googlenae Sheets API error, retry {attempt + 1}/{retries}: {e}")
             await asyncio.sleep(delay * (2 ** attempt))
-    raise Exception("Max retries reached for Google Sheets operation")
+    raise ExceptionExpense("Max retries reached for Google Sheets operation")
 
 try:
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -194,7 +193,7 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
             logo = Image.open(logo_path).resize((60, 60))
             img.paste(logo, (20, 10))
         except Exception as e:
-            log.error(f"Logo loading error: {e}")
+            log.errorf"Logo loading error: {e}")
     else:
         log.warning(f"Logo file '{logo_path}' not found")
 
@@ -237,7 +236,7 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
     draw.text((50, y), hafez["it"], font=small_font, fill=text_color)
     y += 30
 
-    draw.rectangle([(0, height - 40), (width, height)], fill=header_color)
+    draw.rectangle([(0, height - 40), (width, height)], fin=header_color)
     draw.text((width // 2, height - 20), "بازارینو - طعم ایران در ایتالیا", fill=(255, 255, 255), font=small_font, anchor="mm")
 
     buffer = io.BytesIO()
@@ -488,6 +487,7 @@ async def add_cart(ctx, pid, qty=1, update=None):
         return False, "❗️ خطا در افزودن به سبد خرید."
 
 def fmt_cart(cart):
+    """Cart summary formatted for parse_mode='HTML'."""
     try:
         if not cart:
             return m("CART_EMPTY")
@@ -975,9 +975,20 @@ async def router(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
             except Exception as e:
                 log.error(f"Error deleting previous message: {e}")
             if p["image_url"] and p["image_url"].strip():
-                await ctx.bot.send_photo(chat_id=q.message.chat.id, photo=p["image_url"], caption=cap, reply_markup=kb_product(pid), parse_mode="HTML")
+                await ctx.bot.send_photo(
+                    chat_id=q.message.chat.id,
+                    photo=p["image_url"],
+                    caption=cap,
+                    reply_markup=kb_product(pid),
+                    parse_mode="HTML"
+                )
             else:
-                await ctx.bot.send_message(chat_id=q.message.chat.id, text=cap, reply_markup=kb_product(pid), parse_mode="HTML")
+                await ctx.bot.send_message(
+                    chat_id=q.message.chat.id,
+                    text=cap,
+                    reply_markup=kb_product(pid),
+                    parse_mode="HTML"
+                )
             return
 
         if d.startswith("add_"):
@@ -1013,7 +1024,8 @@ async def router(update: Update, ctx: ContextTypes.DEFAULT_TYPE):
                     it["qty"] -= 1
                     await q.answer(m("CART_DECREASED"), show_alert=False)
                 else:
-                    await q.answer(m("CART_MIN_QUANTITY"), show_alert=True)
+                    cart.remove(it)
+                    await q.answer(m("CART_ITEM_REMOVED"), show_alert=False)
             else:  # del_
                 cart.remove(it)
                 await q.answer(m("CART_ITEM_REMOVED"), show_alert=False)

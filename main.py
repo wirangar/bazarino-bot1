@@ -237,7 +237,7 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
     draw.text((50, y), hafez["it"], font=small_font, fill=text_color)
     y += 30
 
-    draw.rectangle([(0, height - 40), (width, height)], fin=header_color)
+    draw.rectangle([(0, height - 40), (width, height)], fill=header_color)
     draw.text((width // 2, height - 20), "بازارینو - طعم ایران در ایتالیا", fill=(255, 255, 255), font=small_font, anchor="mm")
 
     buffer = io.BytesIO()
@@ -340,17 +340,16 @@ cart_count = lambda ctx: sum(i["qty"] for i in ctx.user_data.get("cart", []))
 
 async def safe_edit(q, *args, **kwargs):
     try:
-        parse_mode   = kwargs.get("parse_mode")        # 🔸 جدا می‌خوانیم تا کپشن هم داشته باشد
+        parse_mode   = kwargs.get("parse_mode")
         reply_markup = kwargs.get("reply_markup")
 
         if q.message.text:
             await q.edit_message_text(*args, **kwargs)
 
         elif q.message.caption is not None or q.message.photo:
-            # 🔸 parse_mode را هم پاس می‌دهیم
             await q.edit_message_caption(
                 caption=args[0],
-                parse_mode=parse_mode,                 # ← این خط جدید است
+                parse_mode=parse_mode,
                 reply_markup=reply_markup
             )
 
@@ -359,7 +358,11 @@ async def safe_edit(q, *args, **kwargs):
                 await q.message.delete()
             except Exception as e:
                 log.warning(f"Failed to delete message: {e}")
-            await q.message.chat.send_message(*args, **kwargs)
+            await q.message.chat.send_message(
+                *args,
+                parse_mode=parse_mode,
+                reply_markup=reply_markup
+            )
 
     except BadRequest as e:
         err = str(e)
@@ -370,12 +373,21 @@ async def safe_edit(q, *args, **kwargs):
             await q.message.delete()
         except Exception as e:
             log.warning(f"Failed to delete message after error: {e}")
-        await q.message.chat.send_message(*args, **kwargs)
+        await q.message.chat.send_message(
+            *args,
+            parse_mode=parse_mode,
+            reply_markup=reply_markup
+        )
 
     except NetworkError as e:
         log.error(f"Network error in safe_edit: {e}")
         await asyncio.sleep(1)
-        await q.message.chat.send_message(*args, **kwargs)
+        await q.message.chat.send_message(
+            *args,
+            parse_mode=parse_mode,
+            reply_markup=reply_markup
+        )
+
 
 
 async def alert_admin(pid, stock):

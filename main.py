@@ -340,16 +340,27 @@ cart_count = lambda ctx: sum(i["qty"] for i in ctx.user_data.get("cart", []))
 
 async def safe_edit(q, *args, **kwargs):
     try:
+        parse_mode   = kwargs.get("parse_mode")        # 🔸 جدا می‌خوانیم تا کپشن هم داشته باشد
+        reply_markup = kwargs.get("reply_markup")
+
         if q.message.text:
             await q.edit_message_text(*args, **kwargs)
+
         elif q.message.caption is not None or q.message.photo:
-            await q.edit_message_caption(caption=args[0], reply_markup=kwargs.get("reply_markup"))
+            # 🔸 parse_mode را هم پاس می‌دهیم
+            await q.edit_message_caption(
+                caption=args[0],
+                parse_mode=parse_mode,                 # ← این خط جدید است
+                reply_markup=reply_markup
+            )
+
         else:
             try:
                 await q.message.delete()
             except Exception as e:
                 log.warning(f"Failed to delete message: {e}")
             await q.message.chat.send_message(*args, **kwargs)
+
     except BadRequest as e:
         err = str(e)
         if "not modified" in err or "There is no text" in err:
@@ -360,10 +371,12 @@ async def safe_edit(q, *args, **kwargs):
         except Exception as e:
             log.warning(f"Failed to delete message after error: {e}")
         await q.message.chat.send_message(*args, **kwargs)
+
     except NetworkError as e:
         log.error(f"Network error in safe_edit: {e}")
         await asyncio.sleep(1)
         await q.message.chat.send_message(*args, **kwargs)
+
 
 async def alert_admin(pid, stock):
     if stock <= LOW_STOCK_TH and ADMIN_ID:

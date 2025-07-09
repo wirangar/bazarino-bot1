@@ -193,7 +193,7 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
             logo = Image.open(logo_path).resize((60, 60))
             img.paste(logo, (20, 10))
         except Exception as e:
-            log.errorf"Logo loading error: {e}")
+            log.error(f"Logo loading error: {e}")
     else:
         log.warning(f"Logo file '{logo_path}' not found")
 

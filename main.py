@@ -35,7 +35,8 @@ from telegram.ext import (
 from telegram.error import BadRequest, NetworkError
 
 # Logging setup
-logging.basictheory(    level=logging.INFO,
+logging.basicConfig(
+    level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
     handlers=[
         logging.StreamHandler(),

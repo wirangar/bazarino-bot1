@@ -30,7 +30,7 @@ import uvicorn
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardRemove, Update
 from telegram.ext import (
     Application, ApplicationBuilder, CallbackQueryHandler, CommandHandler, ContextTypes,
-    ConversationHandler, MessageHandler, filters, JobQueue
+    ConversationHandler, MessageHandler, filters, JobQueue, PicklePersistence
 )
 from telegram.error import BadRequest, NetworkError
 
@@ -947,7 +947,8 @@ async def post_shutdown(app: Application):
 async def lifespan(app: FastAPI):
     global tg_app, bot
     try:
-        builder = ApplicationBuilder().token(TOKEN).post_init(post_init).post_shutdown(post_shutdown)
+        persistence = PicklePersistence(filepath="bazarino_persistence.pickle")
+        builder = ApplicationBuilder().token(TOKEN).persistence(persistence).post_init(post_init).post_shutdown(post_shutdown)
         tg_app = builder.build()
         bot = tg_app.bot
         await tg_app.initialize()

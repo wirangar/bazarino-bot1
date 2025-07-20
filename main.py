@@ -176,12 +176,18 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
     pattern_path = "assets/background_pattern.png"
     if os.path.exists(pattern_path):
         try:
-            pattern = Image.open(pattern_path).convert("L")
-            pattern = Image.eval(pattern, lambda p: 255 - (255 - p) // 2) # Make it lighter
-            img.paste(bg_color, (0, 0, width, height))
+            pattern = Image.open(pattern_path).convert("RGBA")
+            # Create a transparent overlay
+            overlay = Image.new('RGBA', img.size, (255, 255, 255, 0))
+            draw_overlay = ImageDraw.Draw(overlay)
+            # Tile the pattern
             for y in range(0, height, pattern.height):
                 for x in range(0, width, pattern.width):
-                    img.paste(pattern, (x, y), mask=pattern)
+                    overlay.paste(pattern, (x, y), pattern)
+            # Control opacity
+            alpha = overlay.split()[3]
+            alpha = Image.eval(alpha, lambda p: p // 4) # Reduce opacity
+            img.paste(Image.composite(overlay, img, alpha))
         except Exception as e:
             log.error(f"Background pattern error: {e}")
 
@@ -218,7 +224,6 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
     y += 50
 
     # Customer Info
-    info_box_y = y
     draw.rounded_rectangle([(margin, y), (width - margin, y + 100)], radius=10, fill=(255, 255, 255), outline=border_color)
 
     info_y = y + 20
@@ -238,12 +243,12 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
     draw.text((width - margin, y), "محصولات / Prodotti", font=header_font, fill=text_color, anchor="ra")
     y += 40
 
-    table_header_y = y
-    draw.line([(margin, table_header_y), (width - margin, table_header_y)], fill=border_color, width=2)
+    draw.line([(margin, y), (width - margin, y)], fill=border_color, width=2)
     y += 15
     draw.text((width - margin - 20, y), "محصول", font=body_font, fill=secondary_text_color, anchor="ra")
-    draw.text((width / 2, y), "تعداد", font=body_font, fill=secondary_text_color, anchor="ma")
-    draw.text((margin + 20, y), "قیمت", font=body_font, fill=secondary_text_color, anchor="la")
+    draw.text((width / 2 + 70, y), "تعداد", font=body_font, fill=secondary_text_color, anchor="ma")
+    draw.text((width / 2 - 70, y), "قیمت واحد", font=body_font, fill=secondary_text_color, anchor="ma")
+    draw.text((margin + 20, y), "جمع", font=body_font, fill=secondary_text_color, anchor="la")
     y += 15
     draw.line([(margin, y), (width - margin, y)], fill=border_color, width=1)
 
@@ -251,24 +256,26 @@ async def generate_invoice(order_id, user_data, cart, total, discount):
         y += 25
         subtotal = item['qty'] * item['price']
         draw.text((width - margin - 20, y), item['fa'], font=body_font, fill=text_color, anchor="ra")
-        draw.text((width / 2, y), str(item['qty']), font=body_font, fill=text_color, anchor="ma")
+        draw.text((width / 2 + 70, y), str(item['qty']), font=body_font, fill=text_color, anchor="ma")
+        draw.text((width / 2 - 70, y), f"{item['price']:.2f}€", font=body_font, fill=text_color, anchor="ma")
         draw.text((margin + 20, y), f"{subtotal:.2f}€", font=body_font, fill=text_color, anchor="la")
         y += 25
-        draw.line([(margin + 20, y), (width - margin - 20, y)], fill=border_color, width=1)
+        if item != cart[-1]:
+            draw.line([(margin + 20, y), (width - margin - 20, y)], fill=border_color, width=1)
 
     # Totals
     y += 30
+    draw.line([(width / 2, y), (width - margin, y)], fill=border_color, width=1)
+    y += 15
     draw.text((width - margin, y), f"تخفیف: {discount:.2f}€", font=body_font, fill=text_color, anchor="ra")
-    draw.text((margin, y), f"Sconto: {discount:.2f}€", font=small_font, fill=secondary_text_color, anchor="la")
-    y += 40
-    draw.line([(margin, y), (width - margin, y)], fill=border_color, width=2)
-    y += 10
+    draw.text((width / 2 + 20, y), f"Sconto", font=small_font, fill=secondary_text_color, anchor="la")
+    y += 30
     draw.text((width - margin, y), f"مبلغ نهایی: {total:.2f}€", font=header_font, fill=header_color, anchor="ra")
-    draw.text((margin, y), f"Totale: {total:.2f}€", font=small_font, fill=secondary_text_color, anchor="la")
-    y += 50
+    draw.text((width / 2 + 20, y), f"Totale", font=body_font, fill=secondary_text_color, anchor="la")
+    y += 60
 
     # Notes & Hafez
-    if user_data.get('notes'):
+    if user_data.get('notes') and user_data['notes'].strip():
         draw.text((width - margin, y), "یادداشت شما:", font=body_font, fill=text_color, anchor="ra")
         y += 25
         draw.text((width - margin, y), user_data['notes'], font=small_font, fill=secondary_text_color, anchor="ra")

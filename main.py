@@ -162,83 +162,130 @@ except Exception as e:
 # ───────────── Lazy-import Pillow and Invoice Generation
 async def generate_invoice(order_id, user_data, cart, total, discount):
     from PIL import Image, ImageDraw, ImageFont
-    width, height = 600, 900
-    img = Image.new("RGB", (width, height), color=(255, 255, 255))
+
+    width, height = 700, 1000
+    bg_color = (248, 249, 250)
+    header_color = (40, 167, 69)
+    text_color = (33, 37, 41)
+    secondary_text_color = (108, 117, 125)
+    border_color = (222, 226, 230)
+
+    img = Image.new("RGB", (width, height), color=bg_color)
+
+    # Add background pattern
+    pattern_path = "assets/background_pattern.png"
+    if os.path.exists(pattern_path):
+        try:
+            pattern = Image.open(pattern_path).convert("L")
+            pattern = Image.eval(pattern, lambda p: 255 - (255 - p) // 2) # Make it lighter
+            img.paste(bg_color, (0, 0, width, height))
+            for y in range(0, height, pattern.height):
+                for x in range(0, width, pattern.width):
+                    img.paste(pattern, (x, y), mask=pattern)
+        except Exception as e:
+            log.error(f"Background pattern error: {e}")
+
     draw = ImageDraw.Draw(img)
 
-    header_color = (0, 128, 0)
-    text_color = (0, 0, 0)
-    accent_color = (255, 215, 0)
-    border_color = (0, 0, 0)
-    beige = (245, 245, 220)
-
+    # Fonts
     font_dir = "fonts"
-    if not os.path.exists(font_dir):
-        log.warning(f"Fonts directory '{font_dir}' not found, using default fonts")
-        title_font = body_font = small_font = ImageFont.load_default()
-    else:
-        try:
-            title_font = ImageFont.truetype(os.path.join(font_dir, "Vazir.ttf"), 24)
-            body_font = ImageFont.truetype(os.path.join(font_dir, "arial.ttf"), 18)
-            small_font = ImageFont.truetype(os.path.join(font_dir, "Vazir.ttf"), 16)
-        except Exception as e:
-            log.error(f"Font loading error: {e}, falling back to default fonts")
-            title_font = body_font = small_font = ImageFont.load_default()
+    try:
+        title_font = ImageFont.truetype(os.path.join(font_dir, "Vazir.ttf"), 32)
+        header_font = ImageFont.truetype(os.path.join(font_dir, "Vazir.ttf"), 22)
+        body_font = ImageFont.truetype(os.path.join(font_dir, "Vazir.ttf"), 18)
+        small_font = ImageFont.truetype(os.path.join(font_dir, "arial.ttf"), 14)
+    except Exception as e:
+        log.error(f"Font loading error: {e}, falling back to default fonts")
+        title_font = header_font = body_font = small_font = ImageFont.load_default()
 
-    draw.rectangle([(0, 0), (width, 80)], fill=header_color)
-    draw.text((width // 2, 40), "فاکتور بازارینو / Fattura Bazarino", fill=(255, 255, 255), font=title_font, anchor="mm")
-
+    # Header
+    draw.rectangle([(0, 0), (width, 100)], fill=header_color)
     logo_path = "logo.png"
     if os.path.exists(logo_path):
         try:
-            logo = Image.open(logo_path).resize((60, 60))
-            img.paste(logo, (20, 10))
+            logo = Image.open(logo_path).resize((80, 80))
+            img.paste(logo, (20, 10), mask=logo)
         except Exception as e:
             log.error(f"Logo loading error: {e}")
-    else:
-        log.warning(f"Logo file '{logo_path}' not found")
+    draw.text((width - 40, 50), "فاکتور فروش", fill=(255, 255, 255), font=title_font, anchor="ra")
+    draw.text((width - 40, 85), "Bazarino Invoice", fill=(220, 220, 220), font=small_font, anchor="ra")
 
-    y = 100
-    draw.text((50, y), f"شماره سفارش / Ordine #{order_id}", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"نام / Nome: {user_data.get('name', 'N/A')}", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"مقصد / Destinazione: {user_data.get('dest', 'N/A')}", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"آدرس / Indirizzo: {user_data.get('address', 'N/A')} | {user_data.get('postal', 'N/A')}", font=body_font, fill=text_color)
+    # Order Info
+    y = 140
+    margin = 40
+    draw.text((width - margin, y), f"شماره سفارش: {order_id}", font=header_font, fill=text_color, anchor="ra")
+    draw.text((margin, y), f"Order ID: #{order_id}", font=small_font, fill=secondary_text_color, anchor="la")
+    y += 50
+
+    # Customer Info
+    info_box_y = y
+    draw.rounded_rectangle([(margin, y), (width - margin, y + 100)], radius=10, fill=(255, 255, 255), outline=border_color)
+
+    info_y = y + 20
+    draw.text((width - margin - 20, info_y), f"نام مشتری: {user_data.get('name', 'N/A')}", font=body_font, fill=text_color, anchor="ra")
+    info_y += 30
+    draw.text((width - margin - 20, info_y), f"مقصد: {user_data.get('dest', 'N/A')}", font=body_font, fill=text_color, anchor="ra")
+    info_y = y + 20
+    draw.text((margin + 20, info_y), f"Address: {user_data.get('address', 'N/A')}", font=small_font, fill=secondary_text_color, anchor="la")
+    info_y += 20
+    draw.text((margin + 20, info_y), f"Postal Code: {user_data.get('postal', 'N/A')}", font=small_font, fill=secondary_text_color, anchor="la")
+    info_y += 20
+    draw.text((margin + 20, info_y), f"Phone: {user_data.get('phone', 'N/A')}", font=small_font, fill=secondary_text_color, anchor="la")
+
+    y += 130
+
+    # Products Table
+    draw.text((width - margin, y), "محصولات / Prodotti", font=header_font, fill=text_color, anchor="ra")
     y += 40
 
-    draw.text((50, y), "محصولات / Prodotti:", font=body_font, fill=text_color)
-    y += 30
-    draw.rectangle([(40, y - 10), (width - 40, y + 10 + len(cart) * 30)], outline=border_color, width=1)
+    table_header_y = y
+    draw.line([(margin, table_header_y), (width - margin, table_header_y)], fill=border_color, width=2)
+    y += 15
+    draw.text((width - margin - 20, y), "محصول", font=body_font, fill=secondary_text_color, anchor="ra")
+    draw.text((width / 2, y), "تعداد", font=body_font, fill=secondary_text_color, anchor="ma")
+    draw.text((margin + 20, y), "قیمت", font=body_font, fill=secondary_text_color, anchor="la")
+    y += 15
+    draw.line([(margin, y), (width - margin, y)], fill=border_color, width=1)
+
     for item in cart:
-        draw.text((50, y), f"{item['qty']}× {item['fa']} — {item['qty'] * item['price']:.2f}€", font=body_font, fill=text_color)
-        y += 30
-    y += 20
+        y += 25
+        subtotal = item['qty'] * item['price']
+        draw.text((width - margin - 20, y), item['fa'], font=body_font, fill=text_color, anchor="ra")
+        draw.text((width / 2, y), str(item['qty']), font=body_font, fill=text_color, anchor="ma")
+        draw.text((margin + 20, y), f"{subtotal:.2f}€", font=body_font, fill=text_color, anchor="la")
+        y += 25
+        draw.line([(margin + 20, y), (width - margin - 20, y)], fill=border_color, width=1)
 
-    draw.text((50, y), f"تخفیف / Sconto: {discount:.2f}€", font=body_font, fill=text_color)
+    # Totals
     y += 30
-    draw.text((50, y), f"مجموع / Totale: {total:.2f}€", font=body_font, fill=text_color)
-    y += 30
-    draw.text((50, y), f"یادداشت / Nota: {user_data.get('notes', 'بدون یادداشت')}", font=body_font, fill=text_color)
+    draw.text((width - margin, y), f"تخفیف: {discount:.2f}€", font=body_font, fill=text_color, anchor="ra")
+    draw.text((margin, y), f"Sconto: {discount:.2f}€", font=small_font, fill=secondary_text_color, anchor="la")
     y += 40
+    draw.line([(margin, y), (width - margin, y)], fill=border_color, width=2)
+    y += 10
+    draw.text((width - margin, y), f"مبلغ نهایی: {total:.2f}€", font=header_font, fill=header_color, anchor="ra")
+    draw.text((margin, y), f"Totale: {total:.2f}€", font=small_font, fill=secondary_text_color, anchor="la")
+    y += 50
 
-    draw.rectangle([(40, y - 10), (width - 40, y + 80)], outline=border_color, width=1, fill=beige)
-    if not HAFEZ_QUOTES:
-        log.warning("No Hafez quotes defined in config.yaml")
-        hafez = {"fa": "بدون نقل‌قول", "it": "Nessuna citazione"}
-    else:
+    # Notes & Hafez
+    if user_data.get('notes'):
+        draw.text((width - margin, y), "یادداشت شما:", font=body_font, fill=text_color, anchor="ra")
+        y += 25
+        draw.text((width - margin, y), user_data['notes'], font=small_font, fill=secondary_text_color, anchor="ra")
+        y += 40
+
+    if HAFEZ_QUOTES:
         hafez = random.choice(HAFEZ_QUOTES)
+        draw.text((width / 2, y), "✨ فال حافظ ✨", font=header_font, fill=text_color, anchor="mm")
+        y += 35
+        draw.text((width / 2, y), hafez["fa"], font=body_font, fill=secondary_text_color, anchor="mm")
+        y += 25
+        draw.text((width / 2, y), hafez["it"], font=small_font, fill=secondary_text_color, anchor="mm")
 
-    draw.text((50, y), "✨ فال حافظ / Fal di Hafez:", font=small_font, fill=text_color)
-    y += 20
-    draw.text((50, y), hafez["fa"], font=small_font, fill=text_color)
-    y += 20
-    draw.text((50, y), hafez["it"], font=small_font, fill=text_color)
-    y += 30
-
-    draw.rectangle([(0, height - 40), (width, height)], fill=header_color)
-    draw.text((width // 2, height - 20), "بازارینو - طعم ایران در ایتالیا", fill=(255, 255, 255), font=small_font, anchor="mm")
+    # Footer
+    footer_y = height - 60
+    draw.rectangle([(0, footer_y), (width, height)], fill=header_color)
+    draw.text((width / 2, footer_y + 30), "بازارینو - طعم ایران در ایتالیا | Bazarino - Sapori d'Iran in Italia", fill=(255, 255, 255), font=body_font, anchor="mm")
 
     buffer = io.BytesIO()
     img.save(buffer, format="PNG")

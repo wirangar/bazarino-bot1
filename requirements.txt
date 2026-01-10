@@ -35,3 +35,7 @@ pytz==2024.1
 
 # ─── Security ───
 cryptography==42.0.8
+
+
+python-barcode[images]==0.15.1
+reportlab==4.2.2

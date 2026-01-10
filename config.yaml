@@ -1,5 +1,5 @@
 # ═══════════════════════════════════════════════════════════════════════════════
-# BAZARINO BOT CONFIGURATION
+# 🛒 BAZARINO BOT - CONFIGURATION v3.0
 # ═══════════════════════════════════════════════════════════════════════════════
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -7,7 +7,6 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 sheets:
-  # Orders Sheet - Main orders data
   orders:
     name: Orders
     columns:
@@ -18,79 +17,49 @@ sheets:
       name: 5
       phone: 6
       address: 7
-      destination: 8
-      product_id: 9
-      product_fa: 10
-      quantity: 11
-      price: 12
-      subtotal: 13
-      notes: 14
-      discount_code: 15
-      discount_amount: 16
-      status: 17          # preparing, shipped, delivered, cancelled
-      notified: 18        # TRUE/FALSE
+      postal: 8
+      city: 9
+      destination: 10
+      product_id: 11
+      product_fa: 12
+      quantity: 13
+      price: 14
+      subtotal: 15
+      shipping: 16
+      discount_code: 17
+      discount_amount: 18
+      tier_discount: 19
+      points_used: 20
+      points_discount: 21
+      total: 22
+      notes: 23
+      payment_method: 24
+      status: 25
+      tracking_code: 26
+      notified: 27
 
-  # Products Sheet - Product catalog
   products:
     name: Products
     columns:
-      id: 1              # Unique product ID (e.g., rice_01)
-      cat: 2             # Category (rice, beans, spice, nuts, drink, canned, sweet, dairy, bread, sauce)
-      fa: 3              # Persian name
-      it: 4              # Italian name
-      brand: 5           # Brand name
-      description: 6     # Product description
-      weight: 7          # Weight/Volume (e.g., 500g, 1kg, 1L)
-      price: 8           # Price in EUR
-      image_url: 9       # Product image URL
-      stock: 10          # Available stock quantity
-      is_bestseller: 11  # TRUE/FALSE
-      version: 12        # Cache version (update to refresh cache)
-      rating: 13         # Average rating (0-5)
-      rating_count: 14   # Number of ratings
+      id: 1
+      cat: 2
+      fa: 3
+      it: 4
+      brand: 5
+      description: 6
+      weight: 7
+      price: 8
+      image_url: 9
+      stock: 10
+      is_bestseller: 11
+      is_new: 12
+      is_featured: 13
+      discount_percent: 14
+      version: 15
+      rating: 16
+      rating_count: 17
+      tags: 18
 
-  # Discounts Sheet - Discount codes
-  discounts:
-    name: Discounts
-    columns:
-      code: 1            # Discount code (e.g., BAZAR10)
-      discount_percent: 2 # Discount percentage (e.g., 10)
-      valid_until: 3     # Expiry date (YYYY-MM-DD)
-      is_active: 4       # TRUE/FALSE
-      min_order: 5       # Minimum order amount (EUR)
-      max_discount: 6    # Maximum discount amount (EUR)
-      usage_limit: 7     # Maximum usage count
-      used_count: 8      # Current usage count
-
-  # Abandoned Carts Sheet - For cart reminders
-  abandoned_carts:
-    name: AbandonedCarts
-    columns:
-      timestamp: 1
-      user_id: 2
-      cart: 3            # JSON string of cart items
-
-  # User Uploads Sheet - Photos sent by users
-  uploads:
-    name: UserUploads
-    columns:
-      timestamp: 1
-      user_id: 2
-      handle: 3
-      file_id: 4
-      note: 5
-
-  # Ratings Sheet - Product ratings
-  ratings:
-    name: Ratings
-    columns:
-      timestamp: 1
-      user_id: 2
-      product_id: 3
-      rating: 4          # 1-5 stars
-      comment: 5
-
-  # Users Sheet - User data (optional)
   users:
     name: Users
     columns:
@@ -101,168 +70,100 @@ sheets:
       phone: 5
       address: 6
       postal: 7
-      first_order: 8
-      last_order: 9
-      total_orders: 10
+      city: 8
+      points: 9
+      tier: 10
       total_spent: 11
+      total_orders: 12
+      referral_code: 13
+      referred_by: 14
+      referral_count: 15
+      language: 16
+      notifications: 17
+      created_at: 18
+      last_order_at: 19
+
+  discounts:
+    name: Discounts
+    columns:
+      code: 1
+      discount_percent: 2
+      valid_until: 3
+      is_active: 4
+      min_order: 5
+      max_discount: 6
+      usage_limit: 7
+      used_count: 8
+      first_order_only: 9
+      specific_products: 10
+      specific_categories: 11
+
+  abandoned_carts:
+    name: AbandonedCarts
+    columns:
+      timestamp: 1
+      user_id: 2
+      cart_json: 3
+
+  ratings:
+    name: Ratings
+    columns:
+      timestamp: 1
+      user_id: 2
+      product_id: 3
+      rating: 4
+      comment: 5
+
+  uploads:
+    name: Uploads
+    columns:
+      timestamp: 1
+      user_id: 2
+      handle: 3
+      file_id: 4
+      note: 5
+
+  wishlist:
+    name: Wishlist
+    columns:
+      user_id: 1
+      product_id: 2
+      added_at: 3
+
+  subscriptions:
+    name: Subscriptions
+    columns:
+      id: 1
+      user_id: 2
+      items_json: 3
+      frequency_days: 4
+      next_order_date: 5
+      is_active: 6
+      address: 7
+      payment_method: 8
+
+  chat_messages:
+    name: ChatMessages
+    columns:
+      timestamp: 1
+      user_id: 2
+      direction: 3
+      message: 4
+      read: 5
+
+  analytics:
+    name: Analytics
+    columns:
+      date: 1
+      total_orders: 2
+      total_revenue: 3
+      new_users: 4
+      active_users: 5
+      top_products: 6
+      conversion_rate: 7
 
 # ─────────────────────────────────────────────────────────────────────────────
-# HAFEZ QUOTES - Shown on invoices
-# ─────────────────────────────────────────────────────────────────────────────
-
-hafez_quotes:
-  - fa: "گر ز دست زلف مشکینت خطایی رفت، رفت"
-    it: "Se dalla tua treccia profumata sfuggì un errore, ormai è andato"
-  
-  - fa: "دل می‌رود ز دستم، صاحب‌دلان خدا را"
-    it: "Il cuore mi sfugge di mano, o anime gentili per Dio"
-  
-  - fa: "ساقی به نور باده برافروز جام ما"
-    it: "Coppiere, accendi il nostro calice con la luce del vino"
-  
-  - fa: "بر سر آنم که گر ز دست برآید، دست به کاری زنم که غصه سر آید"
-    it: "Sono deciso che, se mi sarà possibile, farò qualcosa che ponga fine al dolore"
-  
-  - fa: "حافظ از باد خزان در چمن دهر مرنج، فکر معقول بفرما گل عمر است این"
-    it: "Hafez, non rattristarti per il vento autunnale nel giardino del mondo"
-  
-  - fa: "رندی آموز و کرم کن که نه چندان هنر است، حیوانی که ننوشد می و انسان نشود"
-    it: "Impara la saggezza e sii generoso, non è grande arte essere bestia"
-  
-  - fa: "شب تاریک و بیم موج و گردابی چنین هایل، کجا دانند حال ما سبکباران ساحل‌ها"
-    it: "Notte buia, paura delle onde e vortici così terribili, come possono capire la nostra condizione coloro che sono leggeri sulle rive"
-  
-  - fa: "من از آن روز که در بند توام آزادم، پادشاهم که به دست تو اسیر افتادم"
-    it: "Dal giorno in cui sono legato a te, sono libero, sono un re perché sono prigioniero nelle tue mani"
-  
-  - fa: "گفتم غم تو دارم، گفتا غمت سر آید، گفتم که ماه من شو، گفتا اگر برآید"
-    it: "Dissi ho il tuo dolore, disse il tuo dolore finirà, dissi sii la mia luna, disse se sorgerà"
-  
-  - fa: "مژده ای دل که مسیحا نفسی می‌آید، که ز انفاس خوشش بوی کسی می‌آید"
-    it: "Buona notizia o cuore, sta arrivando qualcuno dal respiro di Cristo"
-  
-  - fa: "یوسف گم گشته باز آید به کنعان غم مخور، کلبه احزان شود روزی گلستان غم مخور"
-    it: "Giuseppe il perduto tornerà a Canaan non rattristarti, la capanna dei dolori un giorno diventerà un giardino"
-  
-  - fa: "ای پادشه خوبان داد از غم تنهایی، دل بی تو به جان آمد وقت است که بازآیی"
-    it: "O re dei belli, dà sollievo dalla tristezza della solitudine, senza te il cuore è arrivato all'anima, è tempo che tu ritorni"
-  
-  - fa: "در ازل پرتو حسنت ز تجلی دم زد، عشق پیدا شد و آتش به همه عالم زد"
-    it: "Nell'eternità la luce della tua bellezza si manifestò, l'amore apparve e incendiò tutto il mondo"
-  
-  - fa: "خیز تا خرقه صوفی به خرابات بریم، شطح و طامات به بازار خرافات بریم"
-    it: "Alzati, portiamo la veste del sufi alla taverna, portiamo i discorsi mistici al mercato delle superstizioni"
-  
-  - fa: "چو بشنوی سخن اهل دل مگو که خطاست، سخن شناس نه‌ای جان من خطا این‌جاست"
-    it: "Quando senti le parole della gente del cuore non dire che è sbagliato, tu non sei un conoscitore, l'errore è qui"
-  
-  - fa: "ما نه آن رندان خامیم که ترک عاشقی گوییم، و گر خود سوخته زاریم صبر بر خشکی‌ها کوییم"
-    it: "Non siamo quei saggi inesperti che dicono di abbandonare l'amore"
-  
-  - fa: "هزار نکته باریک‌تر ز مو اینجاست، نه هر که سر بتراشد قلندری داند"
-    it: "Ci sono mille sottigliezze più fini di un capello, non chiunque si rada la testa conosce l'ascetismo"
-  
-  - fa: "بیا که قصر امل سخت سست بنیاد است، بیار باده که بنیاد عمر بر باد است"
-    it: "Vieni che il palazzo delle speranze ha fondamenta molto deboli, porta il vino che le fondamenta della vita sono al vento"
-  
-  - fa: "نصیحت گوش کن جانا که از جان دوست‌تر دارند، جوانان سعادتمند پند پیر دانا را"
-    it: "Ascolta il consiglio, caro, perché i giovani fortunati tengono più caro della vita il consiglio del saggio anziano"
-  
-  - fa: "صبا به لطف بگو آن غزال رعنا را، که سر به کوه و بیابان تو داده‌ای ما را"
-    it: "O brezza, di' con gentilezza a quella bella gazzella, che ci hai fatto vagare per monti e deserti"
-
-# ─────────────────────────────────────────────────────────────────────────────
-# SHIPPING CONFIGURATION
-# ─────────────────────────────────────────────────────────────────────────────
-
-shipping:
-  perugia:
-    enabled: true
-    cost: 0
-    min_order: 0
-    same_day: true
-    description_fa: "تحویل رایگان همان‌روز"
-    description_it: "Consegna gratuita in giornata"
-
-  italy:
-    enabled: true
-    min_order: 15
-    free_shipping_threshold: 50
-    tiers:
-      - max_weight: 2000    # grams
-        cost: 5.90
-      - max_weight: 5000
-        cost: 8.90
-      - max_weight: 999999
-        cost: 12.90
-    delivery_days: "2-4"
-    description_fa: "ارسال با پست"
-    description_it: "Spedizione postale"
-
-# ─────────────────────────────────────────────────────────────────────────────
-# PAYMENT METHODS
-# ─────────────────────────────────────────────────────────────────────────────
-
-payment_methods:
-  - id: cash
-    name_fa: "پرداخت در محل"
-    name_it: "Contanti alla consegna"
-    enabled: true
-    perugia_only: true
-    
-  - id: card
-    name_fa: "کارت اعتباری"
-    name_it: "Carta di credito"
-    enabled: true
-    
-  - id: paypal
-    name_fa: "پی‌پال"
-    name_it: "PayPal"
-    enabled: true
-    
-  - id: transfer
-    name_fa: "انتقال بانکی"
-    name_it: "Bonifico bancario"
-    enabled: true
-    iban: "IT00X0000000000000000000000"
-
-# ─────────────────────────────────────────────────────────────────────────────
-# BOT SETTINGS
-# ─────────────────────────────────────────────────────────────────────────────
-
-bot_settings:
-  # Cache settings
-  cache:
-    products_ttl: 60        # seconds
-    discounts_ttl: 300      # seconds
-    
-  # Rate limiting
-  rate_limit:
-    max_requests: 30
-    time_window: 60         # seconds
-    
-  # Photo upload
-  upload:
-    max_size_mb: 2
-    allowed_types:
-      - image/jpeg
-      - image/png
-      - image/webp
-      
-  # Notifications
-  notifications:
-    low_stock_threshold: 3
-    daily_report_hour: 23
-    cart_reminder_hour: 18
-    
-  # Backup
-  backup:
-    enabled: true
-    day_of_week: 6          # 0=Monday, 6=Sunday
-    hour: 0
-
-# ─────────────────────────────────────────────────────────────────────────────
-# CATEGORIES CONFIGURATION
+# CATEGORIES
 # ─────────────────────────────────────────────────────────────────────────────
 
 categories:
@@ -323,47 +224,308 @@ categories:
   sauce:
     emoji: "🫙"
     name_fa: "سس و ترشی"
-    name_it: "Salse e sottaceti"
+    name_it: "Salse"
     order: 10
+    
+  frozen:
+    emoji: "🧊"
+    name_fa: "منجمدات"
+    name_it: "Surgelati"
+    order: 11
+    
+  tea:
+    emoji: "🍵"
+    name_fa: "چای و دمنوش"
+    name_it: "Tè e infusi"
+    order: 12
 
 # ─────────────────────────────────────────────────────────────────────────────
-# ORDER STATUS LABELS
+# SHIPPING
+# ─────────────────────────────────────────────────────────────────────────────
+
+shipping:
+  perugia:
+    enabled: true
+    cost: 0
+    min_order: 0
+    same_day: true
+    description_fa: "تحویل رایگان همان‌روز"
+    description_it: "Consegna gratuita in giornata"
+
+  italy:
+    enabled: true
+    min_order: 15
+    free_shipping_threshold: 50
+    tiers:
+      - max_weight: 2000
+        cost: 5.90
+      - max_weight: 5000
+        cost: 8.90
+      - max_weight: 10000
+        cost: 12.90
+      - max_weight: 999999
+        cost: 15.90
+    delivery_days: "2-4"
+    description_fa: "ارسال با پست"
+    description_it: "Spedizione postale"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PAYMENT METHODS
+# ─────────────────────────────────────────────────────────────────────────────
+
+payment_methods:
+  - id: cash
+    name_fa: "پرداخت در محل"
+    name_it: "Contanti alla consegna"
+    enabled: true
+    perugia_only: true
+    icon: "💰"
+    
+  - id: card
+    name_fa: "کارت اعتباری"
+    name_it: "Carta di credito"
+    enabled: true
+    icon: "💳"
+    
+  - id: paypal
+    name_fa: "پی‌پال"
+    name_it: "PayPal"
+    enabled: true
+    icon: "🅿️"
+    
+  - id: transfer
+    name_fa: "انتقال بانکی"
+    name_it: "Bonifico bancario"
+    enabled: true
+    icon: "🏦"
+    iban: "IT00X0000000000000000000000"
+    bic: "XXXXXXXX"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# LOYALTY PROGRAM
+# ─────────────────────────────────────────────────────────────────────────────
+
+loyalty:
+  points_per_euro: 10
+  
+  referral:
+    referrer_bonus: 100
+    referee_bonus: 50
+    
+  tiers:
+    bronze:
+      threshold: 0
+      discount_percent: 0
+      emoji: "🥉"
+      benefits:
+        - "امتیاز از هر خرید"
+        
+    silver:
+      threshold: 100
+      discount_percent: 3
+      emoji: "🥈"
+      benefits:
+        - "۳٪ تخفیف دائمی"
+        - "اولویت در پشتیبانی"
+        
+    gold:
+      threshold: 300
+      discount_percent: 5
+      emoji: "🥇"
+      benefits:
+        - "۵٪ تخفیف دائمی"
+        - "ارسال رایگان"
+        - "پیشنهادات ویژه"
+        
+    platinum:
+      threshold: 500
+      discount_percent: 10
+      emoji: "💎"
+      benefits:
+        - "۱۰٪ تخفیف دائمی"
+        - "ارسال رایگان"
+        - "دسترسی زودهنگام به محصولات جدید"
+        - "هدایای ویژه"
+
+  points_redemption:
+    min_points: 100
+    points_per_euro: 100  # 100 امتیاز = 1€ تخفیف
+
+# ─────────────────────────────────────────────────────────────────────────────
+# BOT SETTINGS
+# ─────────────────────────────────────────────────────────────────────────────
+
+bot_settings:
+  cache:
+    products_ttl: 60
+    discounts_ttl: 300
+    users_ttl: 600
+    
+  rate_limit:
+    default:
+      max_requests: 30
+      time_window: 60
+    order:
+      max_requests: 5
+      time_window: 300
+    search:
+      max_requests: 20
+      time_window: 60
+    photo:
+      max_requests: 5
+      time_window: 60
+      
+  upload:
+    max_size_mb: 2
+    allowed_types:
+      - image/jpeg
+      - image/png
+      - image/webp
+      
+  notifications:
+    low_stock_threshold: 3
+    daily_report_hour: 23
+    cart_reminder_hour: 18
+    cart_reminder_delay_hours: 4
+    
+  backup:
+    enabled: true
+    day_of_week: 6
+    hour: 0
+    
+  pagination:
+    products_per_page: 8
+    orders_per_page: 10
+
+# ─────────────────────────────────────────────────────────────────────────────
+# ORDER STATUSES
 # ─────────────────────────────────────────────────────────────────────────────
 
 order_statuses:
-  preparing:
+  pending:
     emoji: "⏳"
+    name_fa: "در انتظار تأیید"
+    name_it: "In attesa"
+    color: "#FFC107"
+    
+  preparing:
+    emoji: "🔄"
     name_fa: "در حال آماده‌سازی"
     name_it: "In preparazione"
+    color: "#17A2B8"
     
   shipped:
     emoji: "🚚"
     name_fa: "ارسال شده"
     name_it: "Spedito"
+    color: "#007BFF"
     
   delivered:
     emoji: "✅"
     name_fa: "تحویل داده شده"
     name_it: "Consegnato"
+    color: "#28A745"
     
   cancelled:
     emoji: "❌"
     name_fa: "لغو شده"
     name_it: "Annullato"
+    color: "#DC3545"
+    
+  refunded:
+    emoji: "💸"
+    name_fa: "مرجوع شده"
+    name_it: "Rimborsato"
+    color: "#6C757D"
 
 # ─────────────────────────────────────────────────────────────────────────────
-# CONTACT INFORMATION
+# CONTACT INFO
 # ─────────────────────────────────────────────────────────────────────────────
 
 contact:
   telegram_support: "@BazarinoSupport"
+  telegram_channel: "@BazarinoShop"
   email: "info@bazarino.it"
   website: "https://bazarino.it"
   instagram: "@bazarino.it"
+  
   address:
+    street: "Via Example, 123"
     city: "Perugia"
+    postal: "06123"
+    province: "PG"
     country: "Italia"
+    
   working_hours:
-    start: "09:00"
-    end: "21:00"
+    weekdays:
+      start: "09:00"
+      end: "21:00"
+    weekend:
+      start: "10:00"
+      end: "20:00"
     timezone: "Europe/Rome"
+
+# ─────────────────────────────────────────────────────────────────────────────
+# HAFEZ QUOTES
+# ─────────────────────────────────────────────────────────────────────────────
+
+hafez_quotes:
+  - fa: "گر ز دست زلف مشکینت خطایی رفت، رفت"
+    it: "Se dalla tua treccia sfuggì un errore, ormai è andato"
+    
+  - fa: "دل می‌رود ز دستم، صاحب‌دلان خدا را"
+    it: "Il cuore mi sfugge, o anime gentili per Dio"
+    
+  - fa: "ساقی به نور باده برافروز جام ما"
+    it: "Coppiere, accendi il nostro calice con la luce del vino"
+    
+  - fa: "یوسف گم‌گشته باز آید به کنعان غم مخور"
+    it: "Giuseppe perduto tornerà a Canaan, non rattristarti"
+    
+  - fa: "شب تاریک و بیم موج و گردابی چنین هایل"
+    it: "Notte buia, paura delle onde e vortici terribili"
+    
+  - fa: "بیا که قصر امل سخت سست بنیاد است"
+    it: "Vieni, il palazzo delle speranze ha fondamenta deboli"
+    
+  - fa: "من از آن روز که در بند توام آزادم"
+    it: "Dal giorno che sono legato a te, sono libero"
+    
+  - fa: "الا یا ایها الساقی ادر کأساً و ناولها"
+    it: "O coppiere, riempi il calice e passalo"
+    
+  - fa: "در ازل پرتو حسنت ز تجلی دم زد"
+    it: "Nell'eternità la luce della tua bellezza si manifestò"
+    
+  - fa: "صلاح کار کجا و من خراب کجا"
+    it: "Dove sta la rettitudine e dove sto io, il dissoluto"
+    
+  - fa: "هزار نکته باریک‌تر ز مو اینجاست"
+    it: "Mille sottigliezze più fini di un capello sono qui"
+    
+  - fa: "ای پادشه خوبان داد از غم تنهایی"
+    it: "O re dei belli, dà sollievo dalla solitudine"
+    
+  - fa: "گفتم غم تو دارم، گفتا غمت سر آید"
+    it: "Dissi ho il tuo dolore, disse il tuo dolore finirà"
+    
+  - fa: "مژده ای دل که مسیحا نفسی می‌آید"
+    it: "Buona notizia, sta arrivando qualcuno dal respiro di Cristo"
+    
+  - fa: "خیز تا خرقه صوفی به خرابات بریم"
+    it: "Alzati, portiamo la veste del sufi alla taverna"
+    
+  - fa: "رندی آموز و کرم کن که نه چندان هنر است"
+    it: "Impara la saggezza e sii generoso"
+    
+  - fa: "نصیحت گوش کن جانا که از جان دوست‌تر دارند"
+    it: "Ascolta il consiglio, caro, i giovani fortunati lo tengono caro"
+    
+  - fa: "صبا به لطف بگو آن غزال رعنا را"
+    it: "O brezza, di' con gentilezza a quella bella gazzella"
+    
+  - fa: "چو بشنوی سخن اهل دل مگو که خطاست"
+    it: "Quando senti le parole della gente del cuore non dire che è sbagliato"
+    
+  - fa: "دوش دیدم که ملائک در میخانه زدند"
+    it: "Ieri notte vidi che gli angeli bussarono alla taverna"

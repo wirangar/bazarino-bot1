@@ -1,38 +1,122 @@
 {
-  "WELCOME": "🍇 **به بازارینو خوش آمدید!** 🇮🇷🇮🇹\n\nBenvenuto in **Bazarino**!\n\n🛒 فروشگاه آنلاین محصولات اصیل ایرانی در قلب پروجا\nIl tuo mini-market persiano a Perugia.\n\n🚚 تحویل همان‌روز در پروجا | giornata a Perugia\n📦 ارسال به سراسر ایتالیا با هماهنگی | in tutta Italia\n\n👇 یکی از دسته‌ها را انتخاب کنید و طعم خانه را سفارش دهید:\nScegli una categoria e assapora la tua casa 👇",
-  "CART_EMPTY": "🛒 سبد خرید شما خالی است.\nIl carrello è vuoto.",
-  "ORDER_CANCELLED": "❌ سفارش لغو شد.\nOrdine annullato.",
-  "PHONE_INVALID": "📵 شماره تلفن نامعتبر است. لطفاً با فرمت درست وارد کنید (مثلاً +39...).\nNumero di telefono non valido.",
-  "ADDRESS_INVALID": "📍 آدرس خیلی کوتاه یا نامعتبر است. لطفاً کامل‌تر وارد کنید.\nIndirizzo troppo breve o non valido.",
-  "ERROR_SHEET": "❗️ خطا در ثبت سفارش. لطفاً مجدداً تلاش کنید یا با پشتیبانی تماس بگیرید.\nErrore durante il salvataggio. Riprova o contatta il supporto.",
-  "THANK_YOU": "✅ سفارش شما با موفقیت ثبت شد!\nGrazie per il tuo ordine!",
-  "CART_ADDED": "✅ به سبد خرید افزوده شد.\nAggiunto al carrello.",
-  "STOCK_EMPTY": "❌ این محصول در حال حاضر موجود نیست.\nProdotto esaurito al momento.",
-  "INPUT_NAME": "👤 لطفاً نام و نام خانوادگی خود را وارد کنید:\nInserisci il tuo nome e cognome:",
-  "INPUT_PHONE": "📞 لطفاً شماره تلفن خود را وارد کنید:\nInserisci il tuo numero di telefono:",
-  "INPUT_ADDRESS": "📍 لطفاً آدرس کامل تحویل را وارد کنید:\nInserisci l'indirizzo di consegna completo:",
-  "INPUT_POSTAL": "🏷 کدپستی را وارد کنید:\nInserisci il CAP:",
-  "INPUT_NOTES": "📝 اگر توضیح یا یادداشتی دارید بنویسید، در غیر این صورت /skip را بزنید.\nScrivi una nota se necessario, o premi /skip.",
-  "ORDER_CONFIRMED": "📦 سفارش شما با موفقیت ثبت شد و در حال آماده‌سازی است.\nOrdine confermato e in preparazione.",
-  "ABOUT_US": "👋 ما خانوادهٔ بازارینو هستیم؛ پل کوچکی میان طعم‌های خانگی ایران و دوستانمان در ایتالیا. هر محصول را با وسواس انتخاب می‌کنیم تا اصالت، کیفیت و حس نوستالژی را یک‌جا به شما برسانیم.\n👋 Siamo la famiglia di Bazarino: un piccolo ponte tra i sapori di casa persiani e i nostri amici in Italia. Selezioniamo ogni prodotto con cura per offrirti autenticità, qualità e un pizzico di nostalgia.",
-  "PRIVACY": "🔒 اطلاعات شخصی شما فقط برای پردازش سفارش و بهبود خدمات استفاده می‌شود؛ هیچ‌گاه بدون رضایت، با شخص ثالثی به اشتراک گذاشته نمی‌شود.\n🔒 I tuoi dati vengono utilizzati esclusivamente per elaborare l’ordine e migliorare il servizio; non saranno mai condivisi con terzi senza il tuo consenso.",
-  "BTN_SEARCH": "🔍 جستجو / Cerca",
-  "SEARCH_USAGE": "🔎 لطفاً نام محصول مورد نظر را وارد کنید:\nInserisci il nome del prodotto da cercare:",
-  "SEARCH_NONE": "❌ هیچ محصولی با این نام یافت نشد.\nNessun prodotto trovato con questo nome.",
-  "BTN_CART": "🛒 مشاهده سبد خرید / Carrello",
-  "BTN_CONTINUE": "✔️ ادامه / Continua",
-  "BTN_BACK": "⬅️ بازگشت / Indietro",
-  "BTN_ORDER_PERUGIA": "📍 پروجا / Perugia",
-  "BTN_ORDER_ITALY": "🚚 ایتالیا / Italia",
-  "PROMO_AFTER_ORDER": "🎁 با استفاده از کد تخفیف BAZAR10 در سفارش بعدی، ۱۰٪ تخفیف بگیرید!\nRicevi il 10% di sconto sul tuo prossimo ordine con il codice BAZAR10!",
-  "SUPPORT_MESSAGE": "📞 با پشتیبانی تماس بگیرید: @BazarinoSupport\nContatta il supporto: @BazarinoSupport\n📷 برای ارسال رسید پرداخت یا درخواست خاص، دکمه زیر را بزنید:",
-  "UPLOAD_PHOTO": "📷 لطفاً تصویر خود را ارسال کنید (مثلاً رسید پرداخت یا درخواست خاص):\nInvia la tua immagine (es. ricevuta di pagamento o richiesta speciale):",
-  "PHOTO_UPLOADED": "✅ تصویر شما با موفقیت به پشتیبانی ارسال شد!\nL'immagine è stata inviata con successo al supporto!",
-  "ERROR_UPLOAD": "❌ خطا در ارسال تصویر. لطفاً دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.\nErrore durante l'invio dell'immagine. Riprova o contatta il supporto.",
-  "ERROR_FILE_SIZE": "❌ حجم تصویر بیش از حد مجاز (2 مگابایت) است.\nL'immagine supera il limite di 2 MB.",
-  "CART_GUIDE": "🛒 لطفاً مقصد سفارش خود را انتخاب کنید:\nاگر در پروجا هستید، گزینه «پروجا» را انتخاب کنید.\nاگر در شهرهای دیگر ایتالیا هستید، گزینه «ایتالیا» را انتخاب کنید و سپس «ادامه» را بزنید.\n\nScegli la destinazione del tuo ordine:\nSe sei a Perugia, seleziona «Perugia».\nSe sei in altre città italiane, seleziona «Italia» e poi premi «Continua».",
+  "WELCOME": "🍇 <b>به بازارینو خوش آمدید!</b> 🇮🇷🇮🇹\n\nBenvenuto in <b>Bazarino</b>, {name}!\n\n🛒 فروشگاه آنلاین محصولات اصیل ایرانی در قلب پروجا\nIl tuo mini-market persiano a Perugia.\n\n🚚 تحویل همان‌روز در پروجا | Consegna in giornata a Perugia\n📦 ارسال به سراسر ایتالیا | Spedizione in tutta Italia\n\n✨ <i>ارسال رایگان برای سفارش‌های بالای ۵۰ یورو!</i>\n<i>Spedizione gratuita per ordini sopra i 50€!</i>\n\n👇 یکی از دسته‌ها را انتخاب کنید:\nScegli una categoria 👇",
+  
+  "CART_EMPTY": "🛒 سبد خرید شما خالی است.\nIl carrello è vuoto.\n\n👆 از منوی بالا محصولات را انتخاب کنید.\nScegli i prodotti dal menu sopra.",
+  
+  "CART_ADDED": "✅ به سبد خرید افزوده شد!\nAggiunto al carrello!",
+  
+  "CART_GUIDE": "🛒 <b>سبد خرید شما / Il tuo carrello</b>\n\n📍 لطفاً مقصد سفارش را انتخاب کنید:\nScegli la destinazione:\n\n• <b>پروجا / Perugia</b> — تحویل رایگان همان‌روز\n  Consegna gratuita in giornata\n\n• <b>ایتالیا / Italia</b> — ارسال با پست\n  Spedizione postale\n\n⬇️ سپس «ادامه» را بزنید / Poi premi «Continua»",
+  
   "CART_DECREASED": "➖ تعداد کاهش یافت.\nQuantità diminuita.",
+  
   "CART_MIN_QUANTITY": "❗️ حداقل تعداد ۱ است.\nLa quantità minima è 1.",
-  "CART_ITEM_REMOVED": "🗑 محصول از سبد خرید حذف شد.\nProdotto rimosso dal carrello.",
-  "CART_ITEM_NOT_FOUND": "❌ محصول در سبد خرید یافت نشد.\nProdotto non trovato nel carrello."
+  
+  "CART_ITEM_REMOVED": "🗑 محصول از سبد حذف شد.\nProdotto rimosso dal carrello.",
+  
+  "CART_ITEM_NOT_FOUND": "❌ محصول در سبد یافت نشد.\nProdotto non trovato nel carrello.",
+  
+  "PRODUCT_NOT_FOUND": "❌ محصول یافت نشد.\nProdotto non trovato.",
+  
+  "STOCK_EMPTY": "❌ متأسفانه این محصول موجود نیست.\nProdotto esaurito al momento.",
+  
+  "STOCK_LOW": "⚠️ فقط {count} عدد باقی مانده!\nSolo {count} disponibili!",
+  
+  "ORDER_CANCELLED": "❌ سفارش لغو شد. سبد خرید شما حفظ شده است.\nOrdine annullato. Il carrello è stato conservato.",
+  
+  "ORDER_CONFIRMED": "✅ <b>سفارش شما با موفقیت ثبت شد!</b>\n<b>Ordine confermato con successo!</b>\n\n📦 سفارش شما در حال آماده‌سازی است.\nIl tuo ordine è in preparazione.\n\n📞 به زودی با شما تماس خواهیم گرفت.\nTi contatteremo presto.",
+  
+  "ORDER_PREPARING": "⏳ سفارش #{order_id} در حال آماده‌سازی است.\nOrdine #{order_id} in preparazione.",
+  
+  "ORDER_SHIPPED": "🚚 سفارش #{order_id} ارسال شد!\nOrdine #{order_id} spedito!",
+  
+  "ORDER_DELIVERED": "✅ سفارش #{order_id} تحویل داده شد!\nOrdine #{order_id} consegnato!",
+  
+  "INPUT_NAME": "👤 <b>نام و نام خانوادگی</b>\n\nلطفاً نام کامل خود را وارد کنید:\nInserisci il tuo nome e cognome:",
+  
+  "INPUT_PHONE": "📞 <b>شماره تلفن</b>\n\nلطفاً شماره تلفن خود را وارد کنید:\nInserisci il tuo numero di telefono:\n\n<i>مثال / Esempio: +39 333 1234567</i>",
+  
+  "INPUT_ADDRESS": "🏠 <b>آدرس تحویل</b>\n\nلطفاً آدرس کامل را وارد کنید:\nInserisci l'indirizzo completo:\n\n<i>شامل: شهر، خیابان، پلاک، واحد\nInclude: città, via, numero, interno</i>",
+  
+  "INPUT_POSTAL": "📮 <b>کد پستی / CAP</b>\n\nکد پستی را وارد کنید:\nInserisci il CAP:\n\n<i>مثال ایتالیا / Esempio: 06123</i>",
+  
+  "INPUT_DISCOUNT": "🎁 <b>کد تخفیف</b>\n\nاگر کد تخفیف دارید وارد کنید:\nSe hai un codice sconto, inseriscilo:\n\n<i>یا /skip برای رد شدن\no /skip per saltare</i>",
+  
+  "INPUT_NOTES": "📝 <b>یادداشت سفارش</b>\n\nاگر توضیح یا درخواست خاصی دارید بنویسید:\nScrivi note o richieste speciali:\n\n<i>مثلاً: زنگ نزنید، تحویل بعدازظهر\nEs: non suonare, consegna pomeriggio</i>\n\n<i>یا /skip برای رد شدن / o /skip per saltare</i>",
+  
+  "PHONE_INVALID": "📵 <b>شماره نامعتبر</b>\n\nلطفاً شماره تلفن معتبر وارد کنید.\nInserisci un numero di telefono valido.\n\n<i>مثال / Esempio: +39 333 1234567</i>",
+  
+  "ADDRESS_INVALID": "📍 <b>آدرس نامعتبر</b>\n\nآدرس خیلی کوتاه است. لطفاً آدرس کامل‌تری وارد کنید.\nIndirizzo troppo breve. Inserisci un indirizzo più completo.",
+  
+  "POSTAL_INVALID": "📮 <b>کد پستی نامعتبر</b>\n\nلطفاً کد پستی صحیح وارد کنید.\nInserisci un CAP valido.\n\n<i>ایتالیا: ۵ رقم / Italia: 5 cifre</i>",
+  
+  "NAME_INVALID": "👤 <b>نام نامعتبر</b>\n\nنام باید حداقل ۲ کاراکتر باشد و شامل عدد نباشد.\nIl nome deve avere almeno 2 caratteri senza numeri.",
+  
+  "DISCOUNT_APPLIED": "✅ کد تخفیف اعمال شد: {percent}%\nCodice sconto applicato: {percent}%",
+  
+  "DISCOUNT_INVALID": "❌ کد تخفیف نامعتبر یا منقضی شده.\nCodice sconto non valido o scaduto.",
+  
+  "DISCOUNT_MIN_ORDER": "❌ حداقل سفارش برای این کد: {amount}€\nOrdine minimo per questo codice: {amount}€",
+  
+  "ERROR_SHEET": "❗️ <b>خطا در ثبت سفارش</b>\n\nلطفاً مجدداً تلاش کنید یا با پشتیبانی تماس بگیرید.\nErrore durante il salvataggio. Riprova o contatta il supporto.\n\n📞 @BazarinoSupport",
+  
+  "ERROR_GENERAL": "❗️ خطایی رخ داد. لطفاً دوباره تلاش کنید.\nSi è verificato un errore. Riprova.",
+  
+  "ERROR_NETWORK": "🌐 خطای شبکه. لطفاً اتصال اینترنت را بررسی کنید.\nErrore di rete. Controlla la connessione.",
+  
+  "THANK_YOU": "🙏 <b>از خرید شما متشکریم!</b>\n<b>Grazie per il tuo acquisto!</b>\n\nامیدواریم از محصولات ما لذت ببرید.\nSperiamo che ti piacciano i nostri prodotti.\n\n⭐️ نظر شما برای ما مهم است!\nLa tua opinione conta per noi!",
+  
+  "ABOUT_US": "👋 <b>درباره بازارینو / Chi siamo</b>\n\n🇮🇷 ما خانوادهٔ بازارینو هستیم؛ پل کوچکی میان طعم‌های خانگی ایران و دوستانمان در ایتالیا.\n\n🇮🇹 Siamo la famiglia di Bazarino: un piccolo ponte tra i sapori di casa persiani e i nostri amici in Italia.\n\n✨ هر محصول را با وسواس انتخاب می‌کنیم تا اصالت، کیفیت و حس نوستالژی را یک‌جا به شما برسانیم.\n\nSelezioniamo ogni prodotto con cura per offrirti autenticità, qualità e un pizzico di nostalgia.\n\n📍 پروجا، ایتالیا\n📞 @BazarinoSupport\n📧 info@bazarino.it\n🌐 bazarino.it",
+  
+  "PRIVACY": "🔒 <b>حریم خصوصی / Privacy</b>\n\n📋 اطلاعات شخصی شما فقط برای پردازش سفارش استفاده می‌شود.\n\nI tuoi dati vengono utilizzati esclusivamente per elaborare l'ordine.\n\n🔐 اطلاعات شما رمزگذاری شده و امن نگهداری می‌شود.\n\nI tuoi dati sono criptati e conservati in sicurezza.\n\n🚫 هیچ‌گاه بدون رضایت شما با شخص ثالثی به اشتراک گذاشته نمی‌شود.\n\nNon saranno mai condivisi con terzi senza il tuo consenso.\n\n📧 برای حذف اطلاعات: info@bazarino.it\nPer cancellare i dati: info@bazarino.it",
+  
+  "SUPPORT_MESSAGE": "📞 <b>پشتیبانی بازارینو / Supporto</b>\n\n👋 چطور می‌توانیم کمکتان کنیم؟\nCome possiamo aiutarti?\n\n💬 تماس مستقیم / Contatto diretto:\n@BazarinoSupport\n\n📧 ایمیل / Email:\ninfo@bazarino.it\n\n⏰ ساعات پاسخگویی:\n۹ صبح تا ۹ شب\nDalle 9:00 alle 21:00\n\n👇 یا از گزینه‌های زیر استفاده کنید:\nOppure usa le opzioni sotto:",
+  
+  "UPLOAD_PHOTO": "📷 <b>ارسال تصویر</b>\n\nلطفاً تصویر خود را ارسال کنید:\nInvia la tua immagine:\n\n<i>مثلاً: رسید پرداخت، درخواست خاص، عکس محصول\nEs: ricevuta, richiesta speciale, foto prodotto</i>\n\n⚠️ حداکثر حجم: 2 مگابایت\nDimensione massima: 2 MB",
+  
+  "PHOTO_UPLOADED": "✅ <b>تصویر ارسال شد!</b>\n\nتصویر شما با موفقیت به پشتیبانی ارسال شد.\nL'immagine è stata inviata al supporto.\n\n⏳ به زودی پاسخ خواهید گرفت.\nRiceverai una risposta a breve.",
+  
+  "ERROR_UPLOAD": "❌ خطا در ارسال تصویر.\nErrore durante l'invio.\n\nلطفاً دوباره تلاش کنید.\nRiprova.",
+  
+  "ERROR_FILE_SIZE": "❌ حجم تصویر بیش از ۲ مگابایت است.\nL'immagine supera i 2 MB.\n\nلطفاً تصویر کوچک‌تری ارسال کنید.\nInvia un'immagine più piccola.",
+  
+  "BTN_SEARCH": "🔍 جستجو / Cerca",
+  "BTN_CART": "🛒 سبد خرید / Carrello",
+  "BTN_CONTINUE": "✅ ادامه سفارش / Continua",
+  "BTN_BACK": "🔙 برگشت / Indietro",
+  "BTN_ORDER_PERUGIA": "🏠 پروجا / Perugia",
+  "BTN_ORDER_ITALY": "🚚 سراسر ایتالیا / Italia",
+  "BTN_CANCEL": "❌ لغو / Annulla",
+  "BTN_CONFIRM": "✅ تأیید / Conferma",
+  
+  "SEARCH_USAGE": "🔍 <b>جستجوی محصول / Cerca prodotto</b>\n\nبرای جستجو از دستور زیر استفاده کنید:\nPer cercare usa il comando:\n\n<code>/search نام محصول</code>\n\n<i>مثال / Esempio:</i>\n<code>/search زعفران</code>\n<code>/search riso</code>",
+  
+  "SEARCH_NONE": "🔍 نتیجه‌ای یافت نشد.\nNessun risultato trovato.\n\n💡 پیشنهاد: کلمات کلیدی‌تر جستجو کنید.\nSuggerimento: prova con parole chiave diverse.",
+  
+  "SEARCH_RESULTS": "🔍 <b>نتایج جستجو برای '{query}':</b>\n<b>Risultati per '{query}':</b>",
+  
+  "FAQ": "❓ <b>سوالات متداول / FAQ</b>\n\n<b>🚚 هزینه ارسال چقدر است؟</b>\n• پروجا: رایگان\n• ایتالیا: از ۵.۹۰€ (رایگان بالای ۵۰€)\n\n<b>⏰ زمان تحویل؟</b>\n• پروجا: همان روز یا روز بعد\n• ایتالیا: ۲-۴ روز کاری\n\n<b>💳 روش‌های پرداخت؟</b>\n• کارت اعتباری\n• پرداخت در محل (فقط پروجا)\n• PayPal\n\n<b>🔄 امکان مرجوعی؟</b>\nبله، تا ۷ روز پس از دریافت\n\n<b>📦 حداقل سفارش؟</b>\n• پروجا: بدون حداقل\n• ایتالیا: ۱۵€\n\n━━━━━━━━━━━━━━━━\n\n<b>🚚 Costo spedizione?</b>\n• Perugia: Gratuita\n• Italia: da 5,90€ (gratis sopra 50€)\n\n<b>⏰ Tempi di consegna?</b>\n• Perugia: stesso giorno o successivo\n• Italia: 2-4 giorni lavorativi\n\n<b>💳 Metodi di pagamento?</b>\n• Carta di credito\n• Contanti (solo Perugia)\n• PayPal\n\n<b>🔄 Reso possibile?</b>\nSì, entro 7 giorni\n\n<b>📦 Ordine minimo?</b>\n• Perugia: nessuno\n• Italia: 15€",
+  
+  "PROMO_AFTER_ORDER": "🎁 <b>هدیه ویژه!</b>\n\nبا کد <code>BAZAR10</code> در سفارش بعدی\n<b>۱۰٪ تخفیف</b> بگیرید!\n\n━━━━━━━━━━━━━━━━\n\n🎁 <b>Regalo speciale!</b>\n\nUsa il codice <code>BAZAR10</code>\nper uno <b>sconto del 10%</b> sul prossimo ordine!",
+  
+  "SHIPPING_INFO": "🚚 <b>اطلاعات ارسال / Info spedizione</b>\n\n<b>📍 پروجا / Perugia:</b>\n• تحویل رایگان همان‌روز\n• Consegna gratuita in giornata\n\n<b>🇮🇹 سراسر ایتالیا / Tutta Italia:</b>\n• زیر ۲ کیلو: ۵.۹۰€\n• ۲-۵ کیلو: ۸.۹۰€\n• بالای ۵ کیلو: ۱۲.۹۰€\n\n✨ <b>ارسال رایگان بالای ۵۰€!</b>\n<b>Spedizione gratuita sopra 50€!</b>",
+  
+  "RATING_ASK": "⭐️ <b>امتیاز شما / La tua valutazione</b>\n\nلطفاً به این محصول امتیاز دهید:\nValuta questo prodotto:\n\n👇 یکی را انتخاب کنید / Scegli una opzione",
+  
+  "RATING_THANKS": "⭐️ ممنون از امتیاز شما!\nGrazie per la tua valutazione!",
+  
+  "NO_ORDERS": "📦 هنوز سفارشی ثبت نکرده‌اید.\nNon hai ancora effettuato ordini.\n\n🛒 همین الان اولین خرید خود را انجام دهید!\nFai il tuo primo acquisto ora!",
+  
+  "ADMIN_WELCOME": "🔧 <b>پنل مدیریت بازارینو</b>\n<b>Pannello Admin Bazarino</b>\n\n👇 یک گزینه را انتخاب کنید:\nScegli un'opzione:",
+  
+  "ADMIN_STATS": "📊 <b>آمار فروشگاه / Statistiche</b>",
+  
+  "ADMIN_NO_ACCESS": "⛔️ شما دسترسی ادمین ندارید.\nNon hai accesso admin.",
+  
+  "BOT_STARTED": "🟢 ربات بازارینو راه‌اندازی شد!\nBot Bazarino avviato!",
+  
+  "BOT_STOPPED": "🔴 ربات در حال خاموش شدن...\nBot in arresto...",
+  
+  "RATE_LIMIT": "⏳ لطفاً کمی صبر کنید...\nAttendi un momento...",
+  
+  "MAINTENANCE": "🔧 ربات در حال به‌روزرسانی است.\nBot in manutenzione.\n\nلطفاً چند دقیقه دیگر مراجعه کنید.\nRiprova tra qualche minuto."
 }

@@ -1,5 +1,5 @@
 {
-  "WELCOME": "🍇 **به بازارینو خوش آمدید!** 🇮🇷🇮🇹\n\nBenvenuto in **Bazarino**!\n\n🛒 فروشگاه آنلاین محصولات اصیل ایرانی در قلب پروجا\nIl tuo mini-market persiano a Perugia.\n\n🚚 تحویل همان‌روز در پروجا | giornata a Perugia\n📦 ارسال به سراسر ایتالیا با هماهنگی | in tutta Italia\n\n👇 یکی از دسته‌ها را انتخاب کنید و طعم خانه را سفارش دهید:\nScegli una categoria e assapora la tua casa 👇",
+  "WELCOME": "🍇 **به بازارینو خوش آمدید!** 🇮🇷🇮🇹\n\nBenvenuto in **Bazarino2**!\n\n🛒 فروشگاه آنلاین محصولات اصیل ایرانی در قلب پروجا\nIl tuo mini-market persiano a Perugia.\n\n🚚 تحویل همان‌روز در پروجا | giornata a Perugia\n📦 ارسال به سراسر ایتالیا با هماهنگی | in tutta Italia\n\n👇 یکی از دسته‌ها را انتخاب کنید و طعم خانه را سفارش دهید:\nScegli una categoria e assapora la tua casa 👇",
   "CART_EMPTY": "🛒 سبد خرید شما خالی است.\nIl carrello è vuoto.",
   "ORDER_CANCELLED": "❌ سفارش لغو شد.\nOrdine annullato.",
   "PHONE_INVALID": "📵 شماره تلفن نامعتبر است. لطفاً با فرمت درست وارد کنید (مثلاً +39...).\nNumero di telefono non valido.",
@@ -31,3 +31,4 @@
   "ERROR_UPLOAD": "❌ خطا در ارسال تصویر. لطفاً دوباره تلاش کنید یا با پشتیبانی تماس بگیرید.\nErrore durante l'invio dell'immagine. Riprova o contatta il supporto.",
   "ERROR_FILE_SIZE": "❌ حجم تصویر بیش از حد مجاز (2 مگابایت) است.\nL'immagine supera il limite di 2 MB."
 }
+
